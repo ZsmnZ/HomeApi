@@ -1,15 +1,25 @@
+using FluentValidation;
+using HomeApi;
 using HomeApi.Configuration;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using HomeApi.Contracts.Validation;
 using Microsoft.OpenApi.Models;
-using System.Runtime.CompilerServices;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+var assembly = Assembly.GetAssembly(typeof(MappingProfile));
+builder.Services.AddAutoMapper(assembly);
+
+builder.Services.AddValidatorsFromAssemblyContaining<AddDeviceRequestValidator>();
 
 builder.Configuration.AddJsonFile("HomeOptions.json");
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Configuration.AddJsonFile("appsettings.Development.json");
 builder.Services.Configure<HomeOptions>(builder.Configuration);
+
+
+
+
+
 
 
 builder.Services.AddControllers();
@@ -27,21 +37,20 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-    var app = builder.Build();
+var app = builder.Build();
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
-
-    app.UseHttpsRedirection();
-
-    app.UseAuthorization();
-
-    app.MapControllers();
-
-    app.Run();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
