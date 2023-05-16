@@ -6,9 +6,12 @@ using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Configuration.AddJsonFile("HomeOptions.json");
-builder.Services.Configure<HomeOptions>((IConfiguration)builder.Configuration.AddJsonFile("HomeOptions.json"));
-builder.Services.Configure<HomeOptions>(options => options.Area = 120);
+builder.Configuration.AddJsonFile("HomeOptions.json");
+builder.Configuration.AddJsonFile("appsettings.json");
+builder.Configuration.AddJsonFile("appsettings.Development.json");
+builder.Services.Configure<HomeOptions>(builder.Configuration);
+
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

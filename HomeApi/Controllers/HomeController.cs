@@ -12,7 +12,7 @@ namespace HomeApi.Controllers
     public class HomeController : ControllerBase
     {
         // Ссылка на объект конфигурации
-        private IOptions<HomeOptions> _options;
+        public IOptions<HomeOptions> _options;
 
         // Инициализация конфигурации при вызове конструктора
         public HomeController(IOptions<HomeOptions> options)
