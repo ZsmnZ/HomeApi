@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using HomeApi.Configuration;
-using HomeApi.Contracts.Devices;
 using HomeApi.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using HomeApi.Contracts.Validation;
+using HomeApi.Contracts.Models.Devices;
 
 namespace HomeApi.Controllers
 {

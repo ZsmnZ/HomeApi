@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HomeApi.Contracts.Devices
+namespace HomeApi.Contracts.Models.Devices
 {
     public class AddDevicesRequest
     {

@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using HomeApi.Contracts.Devices;
+using HomeApi.Contracts.Models.Devices;
 
 namespace HomeApi.Contracts.Validation
 {
