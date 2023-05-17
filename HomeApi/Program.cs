@@ -9,12 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 var assembly = Assembly.GetAssembly(typeof(MappingProfile));
 builder.Services.AddAutoMapper(assembly);
 
-builder.Services.AddValidatorsFromAssemblyContaining<AddDeviceRequestValidator>();
+
 
 builder.Configuration.AddJsonFile("HomeOptions.json");
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Configuration.AddJsonFile("appsettings.Development.json");
 builder.Services.Configure<HomeOptions>(builder.Configuration);
+
+
+
+
+builder.Services.AddValidatorsFromAssemblyContaining<AddDeviceRequestValidator>();
 
 
 

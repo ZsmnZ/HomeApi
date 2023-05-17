@@ -5,6 +5,7 @@ using HomeApi.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using HomeApi.Contracts.Validation;
 
 namespace HomeApi.Controllers
 {
@@ -40,7 +41,12 @@ namespace HomeApi.Controllers
             [FromBody]
             AddDevicesRequest request)
         {
-          
+          var validator = new AddDeviceRequestValidator();
+            var result = validator.Validate(request);
+            if(!result.IsValid)
+            {
+                return BadRequest(result.Errors);
+            }
             return StatusCode(200, $"Устройство {request.Name} добавлено!");
         }
     }
